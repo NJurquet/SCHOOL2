@@ -1,3 +1,5 @@
+using SCHOOL2.Models;
+
 namespace SCHOOL2.Views;
 
 public partial class TeacherPage : ContentPage

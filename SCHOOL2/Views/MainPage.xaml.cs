@@ -1,4 +1,4 @@
-﻿using SCHOOL2.Views;
+﻿using SCHOOL2.Models;
 
 namespace SCHOOL2.Views;
 

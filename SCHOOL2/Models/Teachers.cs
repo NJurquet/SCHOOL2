@@ -1,12 +1,14 @@
-﻿namespace SCHOOL2;
+﻿namespace SCHOOL2.Models;
 
 public class Teacher
 {
     public static List<Teacher> AllTeachers = new List<Teacher>();
+    public static List<Activity> AllTeacherActivities = new List<Activity>();
     public string Firstname { get; set; }
     public string Lastname { get; set; }
     public double Salary { get; set; }
     public string Filename { get; set; }
+
     public string DisplayName
     {
         get { return $"{Firstname} {Lastname}"; }
@@ -45,10 +47,35 @@ public class Teacher
         }
     }
 
+    public static List<Activity> LoadAllActivities()
+    {
+        AllTeacherActivities = new List<Activity>();
+        IEnumerable<Activity> activities = Directory
+            .EnumerateFiles(Config.RootDir, "*.activity.txt")
+            .Select(filename => Activity.Load(Path.GetFileName(filename)))
+            .OrderBy(activity => activity.Name);
+        foreach (var activity in activities)
+        {
+            AllTeacherActivities.Add(activity);
+        }
+        return AllTeacherActivities;
+    }
+
     public void Save()
     {
         var rootFilename = Path.Combine(Config.RootDir, Filename);
         string content = string.Format("{1}{0}{2}{0}{3}", Environment.NewLine, Firstname, Lastname, Salary);
         File.WriteAllText(rootFilename, content);
+    }
+
+    public static void Delete(string filename)
+    {
+        var rootFilename = Path.Combine(Config.RootDir, filename);
+        File.Delete(rootFilename);
+    }
+
+    public override string ToString()
+    {
+        return $"{DisplayName} {Salary}";
     }
 }

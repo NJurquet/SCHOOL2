@@ -17,9 +17,10 @@
             <Label Text="Teacher Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
             <Picker Title="Select teacher"
                     ItemsSource="{Binding AllTeachers}"
-                    ItemDisplayBinding="{Binding DisplayName}" />
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    SelectedItem="{Binding SelectedTeacher}"/>
             <CollectionView x:Name="activitiesCollection"
-                            ItemsSource="{Binding TeacherActivities}"
+                            ItemsSource="{Binding SelectedTeacher.AllTeacherActivities}"
                             Margin="20">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
