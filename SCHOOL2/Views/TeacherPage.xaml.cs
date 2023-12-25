@@ -4,7 +4,7 @@ namespace SCHOOL2.Views;
 
 public partial class TeacherPage : ContentPage
 {
-    public List<Teacher> AllTeachers
+    public static List<Teacher> AllTeachers
     {
         get
         {

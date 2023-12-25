@@ -1,20 +1,14 @@
 ﻿namespace SCHOOL2.Models;
 
-public class Teacher
+public class Teacher : Person
 {
     public static List<Teacher> AllTeachers = new List<Teacher>();
     public static List<Activity> AllTeacherActivities = new List<Activity>();
-    public string Firstname { get; set; }
-    public string Lastname { get; set; }
+
     public double Salary { get; set; }
-    public string Filename { get; set; }
 
-    public string DisplayName
-    {
-        get { return $"{Firstname} {Lastname}"; }
-    }
 
-    public Teacher(string firstname, string lastname, double salary)
+    public Teacher(string firstname, string lastname, double salary) : base(firstname, lastname)
     {
         Firstname = firstname;
         Lastname = lastname;

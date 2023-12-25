@@ -11,12 +11,15 @@ public partial class MainPage : ContentPage
         BindingContext = this;
     }
 
-    public List<Teacher> AllActivities
+    public static List<Activity> AllActivities
     {
-        get;
+        get
+        {
+            return Activity.AllActivities;
+        }
     }
 
-    public List<Teacher> AllTeachers
+    public static List<Teacher> AllTeachers
     {
         get
         {
@@ -24,9 +27,12 @@ public partial class MainPage : ContentPage
         }
     }
 
-    public List<Teacher> AllStudents
+    public static  List<Student> AllStudents
     {
-        get;
+        get
+        {
+            return Student.AllStudents;
+        }
     }
 
     private async void OnAddTeacherClicked(object sender, EventArgs e)

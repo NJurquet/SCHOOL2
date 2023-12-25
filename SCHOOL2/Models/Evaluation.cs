@@ -7,8 +7,6 @@
         public Activity Activity { get; set; }
         public int Grade { get; set; }
         public string Filename { get; set; }
-        public string StudentFilename { get; set; }
-        public string ActivityFilename { get; set; }
 
         public Evaluation(string studentFileName, string activityFileName, int grade)
         {
@@ -18,32 +16,20 @@
             Filename = $"{Path.GetRandomFileName()}.evaluation.txt";
         }
 
-        public void setAppreciation(string appreciation)
+        public void SetAppreciation(string appreciation)
         {
-            switch(appreciation)
+            Grade = appreciation switch
             {
-                case "X":
-                    Grade = 20;
-                    break;
-                case "TB":
-                    Grade = 16;
-                    break;
-                case "B":
-                    Grade = 12;
-                    break;
-                case "C":
-                    Grade = 8;
-                    break;
-                case "N":
-                    Grade = 4;
-                    break;
-                default:
-                    Grade = 0;
-                    break;
-            }
+                "X" => 20,
+                "TB" => 16,
+                "B" => 12,
+                "C" => 8,
+                "N" => 4,
+                _ => 0,
+            };
         }   
 
-        public void setGrade(int grade)
+        public void SetGrade(int grade)
         {
             Grade = grade;
         }   
