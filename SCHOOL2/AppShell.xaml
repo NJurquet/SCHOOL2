@@ -7,14 +7,20 @@
     xmlns:views="clr-namespace:SCHOOL2.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="SCHOOL2">
-
+    
     <TabBar>
         <ShellContent
             Title="Home"
-            ContentTemplate="{DataTemplate local:MainPage}"/>
+            ContentTemplate="{DataTemplate views:MainPage}"/>
+        <ShellContent
+            Title="Activities"
+            ContentTemplate="{DataTemplate views:ActivityPage}"/>
         <ShellContent
             Title="Teachers"
             ContentTemplate="{DataTemplate views:TeacherPage}"/>
+        <ShellContent
+            Title="Students"
+            ContentTemplate="{DataTemplate views:StudentPage}"/>
     </TabBar>
     
 

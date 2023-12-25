@@ -3,31 +3,36 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="SCHOOL2.Views.TeacherPage"
 			 Title="TeacherPage">
-    <StackLayout>
-        <Label Text="Teachers" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
+    <ScrollView>
         <StackLayout>
-            <Entry x:Name="entryFirstName" Placeholder="Prénom" />
-            <Entry x:Name="entryLastName" Placeholder="Nom" />
-            <Entry x:Name="entrySalary" Placeholder="Salaire" />
+            <Label Text="Add Teacher" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
+            <StackLayout>
+                <Entry x:Name="entryFirstName" Placeholder="First Name" />
+                <Entry x:Name="entryLastName" Placeholder="Last Name" />
+                <Entry x:Name="entrySalary" Placeholder="Salary" />
 
-            <Button Text="Ajouter Enseignant" Clicked="OnAddTeacherClicked" />
+                <Button Text="Add Teacher" Clicked="OnAddTeacherClicked" />
+            </StackLayout>
+
+            <Label Text="Teacher Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
+            <Picker Title="Select teacher"
+                    ItemsSource="{Binding AllTeachers}"
+                    ItemDisplayBinding="{Binding DisplayName}" />
+            <CollectionView x:Name="activitiesCollection"
+                            ItemsSource="{Binding TeacherActivities}"
+                            Margin="20">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding ToString}" FontSize="Medium" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
-
-        <CollectionView x:Name="teacherCollection"
-					    ItemsSource="{Binding AllTeachers}"
-					    Margin="20">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-            </CollectionView.ItemsLayout>
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding DisplayName}" FontSize="Medium" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
-    </StackLayout>
+    </ScrollView>
 </ContentPage>
