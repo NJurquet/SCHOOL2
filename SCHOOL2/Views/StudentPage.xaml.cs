@@ -87,7 +87,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
             if (_selectedStudent != value)
             {
                 _selectedStudent = value;
-                _selectedStudent.LoadAllEvaluations();
+                _selectedStudent?.LoadAllEvaluations();
                 OnPropertyChanged(nameof(SelectedStudentEvaluations));
             }
         }

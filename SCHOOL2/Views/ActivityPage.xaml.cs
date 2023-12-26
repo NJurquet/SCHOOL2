@@ -7,7 +7,6 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
 {
     private Teacher _selectedTeacher;
     public List<Teacher> AllTeachers => Teacher.AllTeachers;
-    public event PropertyChangedEventHandler PropertyChanged;
 
     public ActivityPage()
 	{
@@ -45,8 +44,4 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
         newActivity.Save();
     }
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SCHOOL2.Views.StudentPage"
              Title="Student Page" >
-    
+
     <ScrollView>
         <StackLayout>
             <Label Text="Add Student" FontSize="Large" HorizontalOptions="Center" Margin="0,30,0,30" FontAttributes="Bold"/>
@@ -43,38 +43,51 @@
             <Grid Padding="10" HorizontalOptions="Center" Margin="0,0,0,30">
                 <!-- Column Definitions -->
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <!-- Proportional space, twice as much as the second column -->
-                    <ColumnDefinition Width="*"/>
-                    <!-- Proportional space -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Size to the content of the first column -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Size to the content of the second column -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Size to the content of the third column -->
                 </Grid.ColumnDefinitions>
 
                 <!-- Row Definitions -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Header row -->
+                    <!-- Header row, size to content -->
                     <RowDefinition Height="*"/>
-                    <!-- Content row -->
+                    <!-- Content row, fills remaining space -->
                 </Grid.RowDefinitions>
 
                 <!-- Column Headers -->
-                <Label Grid.Column="0" Grid.Row="0" Text="Activity" FontSize="Medium" TextColor="CadetBlue" HorizontalOptions="Start"/>
-                <Label Grid.Column="1" Grid.Row="0" Text="Grade" FontSize="Medium" TextColor="CadetBlue" HorizontalOptions="End"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Activity" FontSize="Medium" TextColor="CadetBlue" HorizontalTextAlignment="Start" MinimumWidthRequest="300"/>
+                <Label Grid.Column="1" Grid.Row="0" Text="ECTS" FontSize="Medium" TextColor="CadetBlue" HorizontalTextAlignment="Center" MinimumWidthRequest="80"/>
+                <Label Grid.Column="2" Grid.Row="0" Text="Grade" FontSize="Medium" TextColor="CadetBlue" HorizontalTextAlignment="Center" MinimumWidthRequest="80"/>
 
                 <!-- ListView for Activities -->
-                <ListView Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding SelectedStudentEvaluations}" WidthRequest="300">
+                <ListView Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{Binding SelectedStudentEvaluations}" HorizontalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Padding="10" ColumnDefinitions="2*,*">
-                                    <Label Grid.Column="0" Text="{Binding Activity.DisplayName}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
-                                    <Label Grid.Column="1" Text="{Binding Grade}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Aligns with the header column width -->
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Aligns with the header column width -->
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Aligns with the header column width -->
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Activity.DisplayName}" FontSize="Small" TextColor="CornflowerBlue" HorizontalTextAlignment="Start" MinimumWidthRequest="300"/>
+                                    <Label Grid.Column="1" Text="{Binding Activity.ECTS}" FontSize="Small" TextColor="CornflowerBlue" HorizontalTextAlignment="Center" MinimumWidthRequest="80"/>
+                                    <Label Grid.Column="2" Text="{Binding Grade}" FontSize="Small" TextColor="CornflowerBlue" HorizontalTextAlignment="Center" MinimumWidthRequest="80"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -9,19 +9,12 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
 {
     private Teacher _selectedTeacher;
     public List<Teacher> AllTeachers => Teacher.AllTeachers;
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public List<Activity> SelectedTeacherActivities => SelectedTeacher?.TeacherActivities;
     public TeacherPage()
     {
         InitializeComponent();
         Teacher.LoadAll();
         BindingContext = this;
-        MessagingCenter.Subscribe<ActivityPage>(this, "AddActivity", (sender) =>
-        {
-            SelectedTeacher?.LoadAllActivities();
-            OnPropertyChanged(nameof(SelectedTeacherActivities));
-        });
     }
 
 
@@ -33,9 +26,9 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
             if (_selectedTeacher != value)
             {
                 _selectedTeacher = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(SelectedTeacherActivities));
-                _selectedTeacher.LoadAllActivities();
+                _selectedTeacher?.LoadAllActivities();
+                //OnPropertyChanged(nameof(SelectedTeacherActivities));
+
             }
         }
     }
@@ -46,32 +39,16 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
         OnPropertyChanged(nameof(SelectedTeacherActivities));
     }
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
     private void OnAddTeacherClicked(object sender, EventArgs e)
     {
-        // R�cup�rer les donn�es du formulaire
         string firstName = entryFirstName.Text;
         string lastName = entryLastName.Text;
         double salary;
+        double.TryParse(entrySalary.Text, out salary);
+        var newTeacher = new Teacher(firstName, lastName, salary);
+        newTeacher.Save();
 
-        if (double.TryParse(entrySalary.Text, out salary))
-        {
-            // Ajouter le professeur � la liste ou effectuer d'autres op�rations n�cessaires
-            var newTeacher = new Teacher(firstName, lastName, salary);
-            newTeacher.Save();
-            // Ajouter la logique pour ajouter le nouveau professeur � votre liste de professeurs
-            // par exemple, MainPageViewModel.Instance.AddTeacher(newTeacher);
-        }
-        else
-        {
-            // G�rer l'erreur de conversion du salaire
-        }
-
-        // Retourner � la page principale apr�s l'ajout
-        Navigation.PopAsync();
+        Teacher.LoadAll();
+        OnPropertyChanged(nameof(AllTeachers));
     }
 }

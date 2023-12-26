@@ -60,7 +60,7 @@ namespace SCHOOL2.Models
 
         public string DisplayName
         {
-            get{ return String.Format("{0} {1} {2}", Name, ECTS, Teacher.DisplayName); }
+            get{ return String.Format("{0} - {2}", Name, ECTS, Teacher.DisplayName); }
         }
 
         public string DisplayTeacherActivity

@@ -5,8 +5,8 @@
 			 Title="Teacher Page">
     <ScrollView>
         <StackLayout>
-            <Label Text="Add Teacher" FontSize="Large" HorizontalOptions="Center" Margin="0,15,0,30" FontAttributes="Bold"/>
-            <StackLayout WidthRequest="500" Spacing="10">
+            <Label Text="Add Teacher" FontSize="Large" HorizontalOptions="Center" Margin="0,30,0,30" FontAttributes="Bold"/>
+            <StackLayout WidthRequest="250" Spacing="10" Margin="0,0,0,15">
                 <Entry x:Name="entryFirstName" Placeholder="First Name" />
                 <Entry x:Name="entryLastName" Placeholder="Last Name" />
                 <Entry x:Name="entrySalary" Placeholder="Salary" />
@@ -14,13 +14,14 @@
                 <Button Text="Add Teacher" Clicked="OnAddTeacherClicked" BackgroundColor="DodgerBlue"/>
             </StackLayout>
 
-            <Label Text="Teacher Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,60,0,30" />
+            <Label Text="Teacher Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,30,0,30" />
             <Picker Title="Select teacher"
                     ItemsSource="{Binding AllTeachers}"
                     ItemDisplayBinding="{Binding DisplayName}"
                     SelectedItem="{Binding SelectedTeacher}"
                     SelectedIndexChanged="OnTeacherSelected"
-                    WidthRequest="250"/>
+                    WidthRequest="250"
+                    Margin="0,0,0,10"/>
 
             <Grid Padding="10" HorizontalOptions="Center">
                 <!-- Column Definitions -->

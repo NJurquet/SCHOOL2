@@ -5,8 +5,8 @@
 			 Title="Activity Page">
     <ScrollView>
         <StackLayout>
-            <Label Text="Add Activity" FontSize="Large" HorizontalOptions="Center" Margin="0,15,0,30" FontAttributes="Bold"/>
-            <StackLayout WidthRequest="250" Spacing="10">
+            <Label Text="Add Activity" FontSize="Large" HorizontalOptions="Center" Margin="0,30,0,30" FontAttributes="Bold"/>
+            <StackLayout WidthRequest="250" Spacing="10" Margin="0,0,0,15">
                 <Entry x:Name="entryName" Placeholder="Name" />
                 <Entry x:Name="entryECTS" Placeholder="ECTS" />
                 <Picker Title="Select teacher"
