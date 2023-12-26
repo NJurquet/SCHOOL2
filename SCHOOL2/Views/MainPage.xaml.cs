@@ -1,14 +1,19 @@
 ﻿using SCHOOL2.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SCHOOL2.Views;
 
-public partial class MainPage : ContentPage
+public partial class MainPage : ContentPage, INotifyPropertyChanged
 {
-	public MainPage()
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public MainPage()
 	{
 		InitializeComponent();
         Teacher.LoadAll();
         BindingContext = this;
+        Activity.LoadAll();
     }
 
     public List<Activity> AllActivities
@@ -35,9 +40,9 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private async void OnAddTeacherClicked(object sender, EventArgs e)
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
-        await Navigation.PushAsync(new TeacherPage());
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 

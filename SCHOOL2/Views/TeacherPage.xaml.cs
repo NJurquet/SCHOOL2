@@ -17,6 +17,11 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         Teacher.LoadAll();
         BindingContext = this;
+        MessagingCenter.Subscribe<ActivityPage>(this, "AddActivity", (sender) =>
+        {
+            SelectedTeacher?.LoadAllActivities();
+            OnPropertyChanged(nameof(SelectedTeacherActivities));
+        });
     }
 
 
