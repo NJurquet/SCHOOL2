@@ -3,12 +3,14 @@
 public class Student : Person
 {
     public static List<Student> AllStudents = new List<Student>();
+    public List<Evaluation> StudentEvaluations { get; set; }
 
     public Student(string firstname, string lastname) : base(firstname, lastname)
     {
         Firstname = firstname;
         Lastname = lastname;
         Filename = $"{Path.GetRandomFileName()}.student.txt";
+        StudentEvaluations = new List<Evaluation>();
     }
 
     public static Student Load(string filename)
@@ -32,6 +34,22 @@ public class Student : Person
         foreach (var teacher in students)
         {
             AllStudents.Add(teacher);
+        }
+    }
+
+    public void LoadAllEvaluations()
+    {
+        StudentEvaluations.Clear();
+        IEnumerable<Evaluation> evaluations = Directory
+            .EnumerateFiles(Config.RootDir, "*.evaluation.txt")
+            .Select(filename => Evaluation.Load(Path.GetFileName(filename)))
+            .OrderBy(evaluation => evaluation.ToString());
+        foreach (var evaluation in evaluations)
+        {
+            if (evaluation.Student.Filename == Filename)
+            {
+                StudentEvaluations.Add(evaluation);
+            }
         }
     }
 
