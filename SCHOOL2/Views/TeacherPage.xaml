@@ -2,38 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="SCHOOL2.Views.TeacherPage"
-			 Title="TeacherPage">
+			 Title="Teacher Page">
     <ScrollView>
         <StackLayout>
-            <Label Text="Add Teacher" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
-            <StackLayout>
+            <Label Text="Add Teacher" FontSize="Large" HorizontalOptions="Center" Margin="0,15,0,30" FontAttributes="Bold"/>
+            <StackLayout WidthRequest="500" Spacing="10">
                 <Entry x:Name="entryFirstName" Placeholder="First Name" />
                 <Entry x:Name="entryLastName" Placeholder="Last Name" />
                 <Entry x:Name="entrySalary" Placeholder="Salary" />
-
-                <Button Text="Add Teacher" Clicked="OnAddTeacherClicked" />
+                
+                <Button Text="Add Teacher" Clicked="OnAddTeacherClicked" BackgroundColor="DodgerBlue"/>
             </StackLayout>
 
-            <Label Text="Teacher Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
+            <Label Text="Teacher Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,60,0,30" />
             <Picker Title="Select teacher"
                     ItemsSource="{Binding AllTeachers}"
                     ItemDisplayBinding="{Binding DisplayName}"
-                    SelectedItem="{Binding SelectedTeacher}"/>
-            <CollectionView x:Name="activitiesCollection"
-                            ItemsSource="{Binding SelectedTeacher.AllTeacherActivities}"
-                            Margin="20">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
+                    SelectedItem="{Binding SelectedTeacher}"
+                    SelectedIndexChanged="OnTeacherSelected"
+                    WidthRequest="250"/>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding ToString}" FontSize="Medium" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Grid Padding="10" HorizontalOptions="Center">
+                <!-- Column Definitions -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <!-- Proportional space, twice as much as the second column -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Proportional space -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Row Definitions -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Header row -->
+                    <RowDefinition Height="*"/>
+                    <!-- Content row -->
+                </Grid.RowDefinitions>
+
+                <!-- Column Headers -->
+                <Label Grid.Column="0" Grid.Row="0" Text="Name" FontSize="Medium" TextColor="CadetBlue" HorizontalOptions="Start"/>
+                <Label Grid.Column="1" Grid.Row="0" Text="ECTS" FontSize="Medium" TextColor="CadetBlue" HorizontalOptions="End"/>
+
+                <!-- ListView for Activities -->
+                <ListView Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding SelectedTeacherActivities}" WidthRequest="300">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10" ColumnDefinitions="2*,*">
+                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </StackLayout>
     </ScrollView>
 </ContentPage>

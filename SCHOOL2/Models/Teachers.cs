@@ -1,9 +1,11 @@
-﻿namespace SCHOOL2.Models;
+﻿using System.Collections.ObjectModel;
+
+namespace SCHOOL2.Models;
 
 public class Teacher : Person
 {
     public static List<Teacher> AllTeachers = new List<Teacher>();
-    public static List<Activity> AllTeacherActivities = new List<Activity>();
+    public List<Activity> TeacherActivities { get ; set; }
 
     public double Salary { get; set; }
 
@@ -11,6 +13,7 @@ public class Teacher : Person
     public Teacher(string firstname, string lastname, double salary) : base(firstname, lastname)
     {
         Salary = salary;
+        TeacherActivities = new List<Activity>();
         Filename = $"{Path.GetRandomFileName()}.teacher.txt";
     }
 
@@ -39,18 +42,21 @@ public class Teacher : Person
         }
     }
 
-    public static List<Activity> LoadAllActivities()
+    public void LoadAllActivities()
     {
-        AllTeacherActivities = new List<Activity>();
+        TeacherActivities.Clear();
+        var teacherActivities = new List<Activity>();
         IEnumerable<Activity> activities = Directory
             .EnumerateFiles(Config.RootDir, "*.activity.txt")
             .Select(filename => Activity.Load(Path.GetFileName(filename)))
             .OrderBy(activity => activity.Name);
         foreach (var activity in activities)
         {
-            AllTeacherActivities.Add(activity);
+            if (activity.TeacherFileName == Filename)
+            {
+                TeacherActivities.Add(activity);
+            }
         }
-        return AllTeacherActivities;
     }
 
     public void Save()

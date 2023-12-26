@@ -24,7 +24,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="Teachers" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold" FontFamily="Arial"/>
+            <Label Text="Teachers" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold"/>
             <Grid HorizontalOptions="Center">
                 <CollectionView x:Name="teachersCollection"
                     ItemsSource="{Binding AllTeachers}"

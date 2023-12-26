@@ -10,10 +10,12 @@ namespace SCHOOL2.Models
         public Teacher Teacher { get; set; }
         public string Filename { get; set; }
         public int ECTS { get; set; }
+        public string TeacherFileName { get; set;} 
 
         public Activity(string name, int ects, string teacherFileName)
         {
             Name = name;
+            TeacherFileName = teacherFileName;
             Teacher = Teacher.Load(teacherFileName);
             ECTS = ects;
             Filename = $"{Path.GetRandomFileName()}.activity.txt";
@@ -46,7 +48,7 @@ namespace SCHOOL2.Models
         public void Save()
         {
             var rootFilename = Path.Combine(Config.RootDir, Filename);
-            string content = string.Format("{1}", Environment.NewLine, Name);
+            string content = string.Format("{1}{0}{2}{0}{3}", Environment.NewLine, Name, ECTS, TeacherFileName);
             File.WriteAllText(rootFilename, content);
         }
 
@@ -56,9 +58,14 @@ namespace SCHOOL2.Models
             File.Delete(rootFilename);
         }
 
-        public override string ToString()
+        public string DisplayName
         {
-            return String.Format("{0} {1} {2}", Name, ECTS, Teacher.DisplayName);
+            get{ return String.Format("{0} {1} {2}", Name, ECTS, Teacher.DisplayName); }
         }
+
+        public string DisplayTeacherActivity
+        {
+            get { return String.Format("{0} {1}", Name, ECTS); }
+        }   
     }
 }

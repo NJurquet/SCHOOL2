@@ -1,22 +1,49 @@
 using SCHOOL2.Models;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SCHOOL2.Views;
 
-public partial class TeacherPage : ContentPage
+public partial class TeacherPage : ContentPage, INotifyPropertyChanged
 {
-    public List<Teacher> AllTeachers
-    {
-        get
-        {
-            return Teacher.AllTeachers;
-        }
-    }
+    private Teacher _selectedTeacher;
+    public List<Teacher> AllTeachers => Teacher.AllTeachers;
+    public event PropertyChangedEventHandler PropertyChanged;
 
+    public List<Activity> SelectedTeacherActivities => SelectedTeacher?.TeacherActivities;
     public TeacherPage()
     {
         InitializeComponent();
         Teacher.LoadAll();
         BindingContext = this;
+    }
+
+
+    public Teacher SelectedTeacher
+    {
+        get => _selectedTeacher;
+        set
+        {
+            if (_selectedTeacher != value)
+            {
+                _selectedTeacher = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedTeacherActivities));
+                _selectedTeacher.LoadAllActivities();
+            }
+        }
+    }
+
+    private void OnTeacherSelected(object sender, EventArgs e)
+    {
+        // This will trigger UI update for SelectedTeacherActivities
+        OnPropertyChanged(nameof(SelectedTeacherActivities));
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     private void OnAddTeacherClicked(object sender, EventArgs e)
