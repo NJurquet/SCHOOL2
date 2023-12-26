@@ -67,7 +67,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Padding="10" ColumnDefinitions="2*,*">
-                                    <Label Grid.Column="0" Text="{Binding Activity}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Column="0" Text="{Binding Activity.DisplayName}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
                                     <Label Grid.Column="1" Text="{Binding Grade}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                                 </Grid>
                             </ViewCell>

@@ -1,6 +1,5 @@
 ﻿using SCHOOL2.Models;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace SCHOOL2.Views;
 
@@ -16,7 +15,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
 
     public List<Evaluation> SelectedStudentEvaluations => SelectedStudent?.StudentEvaluations;
 
-    public event PropertyChangedEventHandler PropertyChanged;
     public StudentPage()
     {
         InitializeComponent();
@@ -33,6 +31,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         newStudent.Save();
         Student.LoadAll();
 
+        OnPropertyChanged(nameof(AllStudents));
         entryFirstName.Text = string.Empty;
         entryLastName.Text = string.Empty;
     }
@@ -45,7 +44,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
             if (_selectedEvaluationStudent != value)
             {
                 _selectedEvaluationStudent = value;
-                OnPropertyChanged();
             }
         }
     }
@@ -57,7 +55,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
             if (_selectedEvaluationActivity != value)
             {
                 _selectedEvaluationActivity = value;
-                OnPropertyChanged();
             }
         }
     }
@@ -78,6 +75,8 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         }
         newEvaluation.Save();
         Evaluation.LoadAll();
+
+        entryGrade.Text = string.Empty;
     }
 
     public Student SelectedStudent
@@ -89,7 +88,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
             {
                 _selectedStudent = value;
                 _selectedStudent.LoadAllEvaluations();
-                OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedStudentEvaluations));
             }
         }
@@ -100,10 +98,4 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         // This will trigger UI update for SelectedStudentEvaluations
         OnPropertyChanged(nameof(SelectedStudentEvaluations));
     }
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
 }
