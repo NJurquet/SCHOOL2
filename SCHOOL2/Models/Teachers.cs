@@ -10,8 +10,6 @@ public class Teacher : Person
 
     public Teacher(string firstname, string lastname, double salary) : base(firstname, lastname)
     {
-        Firstname = firstname;
-        Lastname = lastname;
         Salary = salary;
         Filename = $"{Path.GetRandomFileName()}.teacher.txt";
     }
@@ -70,6 +68,6 @@ public class Teacher : Person
 
     public override string ToString()
     {
-        return $"{DisplayName} {Salary}";
+        return $"{Firstname} {Lastname} {Salary}";
     }
 }

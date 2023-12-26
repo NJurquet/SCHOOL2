@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
         BindingContext = this;
     }
 
-    public static List<Activity> AllActivities
+    public List<Activity> AllActivities
     {
         get
         {
@@ -19,7 +19,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    public static List<Teacher> AllTeachers
+    public List<Teacher> AllTeachers
     {
         get
         {
@@ -27,7 +27,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    public static  List<Student> AllStudents
+    public List<Student> AllStudents
     {
         get
         {

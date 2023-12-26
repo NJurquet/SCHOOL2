@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SCHOOL2.Views.MainPage">
+             
+             
     
     <ScrollView>
         <StackLayout>
@@ -16,28 +18,40 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding DisplayName}" FontSize="Medium" />
+                            <Label Text="{Binding ToString}" FontSize="Medium" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="Teachers" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
-            <CollectionView x:Name="teachersCollection"
-					        ItemsSource="{Binding AllTeachers}"
-					        Margin="20">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
+            <Label Text="Teachers" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold" FontFamily="Arial"/>
+            <Grid HorizontalOptions="Center">
+                <CollectionView x:Name="teachersCollection"
+                    ItemsSource="{Binding AllTeachers}"
+                    Margin="20"
+                    WidthRequest="1000">
+                    <!-- Ajustez cette valeur selon vos besoins -->
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding DisplayName}" FontSize="Medium" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,*,*">
+                                <Label Grid.Column="0" Text="{Binding Firstname}" FontSize="Medium" TextColor="CornflowerBlue"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Lastname}" FontSize="Medium" TextColor="CornflowerBlue"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Salary, StringFormat='{0:C}'}" FontSize="Medium" TextColor="CornflowerBlue"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+
+
 
             <Label Text="Students" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
             <CollectionView x:Name="studentsCollection"
@@ -50,7 +64,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding DisplayName}" FontSize="Medium" />
+                            <Label Text="{Binding ToString}" FontSize="Medium" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

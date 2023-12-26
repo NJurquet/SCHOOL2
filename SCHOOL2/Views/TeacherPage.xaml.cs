@@ -4,7 +4,7 @@ namespace SCHOOL2.Views;
 
 public partial class TeacherPage : ContentPage
 {
-    public static List<Teacher> AllTeachers
+    public List<Teacher> AllTeachers
     {
         get
         {
@@ -21,25 +21,25 @@ public partial class TeacherPage : ContentPage
 
     private void OnAddTeacherClicked(object sender, EventArgs e)
     {
-        // Récupérer les données du formulaire
+        // Rï¿½cupï¿½rer les donnï¿½es du formulaire
         string firstName = entryFirstName.Text;
         string lastName = entryLastName.Text;
         double salary;
 
         if (double.TryParse(entrySalary.Text, out salary))
         {
-            // Ajouter le professeur à la liste ou effectuer d'autres opérations nécessaires
+            // Ajouter le professeur ï¿½ la liste ou effectuer d'autres opï¿½rations nï¿½cessaires
             var newTeacher = new Teacher(firstName, lastName, salary);
             newTeacher.Save();
-            // Ajouter la logique pour ajouter le nouveau professeur à votre liste de professeurs
+            // Ajouter la logique pour ajouter le nouveau professeur ï¿½ votre liste de professeurs
             // par exemple, MainPageViewModel.Instance.AddTeacher(newTeacher);
         }
         else
         {
-            // Gérer l'erreur de conversion du salaire
+            // Gï¿½rer l'erreur de conversion du salaire
         }
 
-        // Retourner à la page principale après l'ajout
+        // Retourner ï¿½ la page principale aprï¿½s l'ajout
         Navigation.PopAsync();
     }
 }
