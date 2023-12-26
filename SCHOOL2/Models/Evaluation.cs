@@ -71,9 +71,12 @@
             File.Delete(rootFilename);
         }
 
-        public override string ToString()
+        public string DisplayName
         {
-            return $"{Activity.Name} : {Grade}/20";
+            get
+            {
+                return $"{Activity.Name} : {Grade}/20";
+            }
         }
     }
 }

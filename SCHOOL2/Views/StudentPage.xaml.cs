@@ -7,7 +7,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
 {
     public List<Student> AllStudents => Student.AllStudents;
     public List<Activity> AllActivities => Activity.AllActivities;
-
     private Student _selectedEvaluationStudent;
     private Activity _selectedEvaluationActivity;
 
