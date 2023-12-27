@@ -40,6 +40,7 @@
                     WidthRequest="250"
                     Margin="0,0,0,10"/>
 
+            <Label Text="{Binding SelectedStudentAverage}" HorizontalOptions="Center" Margin="0,10"/>
             <Grid Padding="10" HorizontalOptions="Center" Margin="0,0,0,30">
                 <!-- Column Definitions -->
                 <Grid.ColumnDefinitions>

@@ -11,6 +11,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
     private Activity _selectedEvaluationActivity;
 
     private Student _selectedStudent;
+    private string _selectedStudentAverage;
 
     public List<Evaluation> SelectedStudentEvaluations => SelectedStudent?.StudentEvaluations;
 
@@ -74,6 +75,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         }
         newEvaluation.Save();
         Evaluation.LoadAll();
+        SelectedEvaluationStudent.LoadAllEvaluations();
 
         entryGrade.Text = string.Empty;
     }
@@ -88,6 +90,10 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
                 _selectedStudent = value;
                 _selectedStudent?.LoadAllEvaluations();
                 OnPropertyChanged(nameof(SelectedStudentEvaluations));
+
+                SelectedStudentAverage = _selectedStudent != null && _selectedStudent.StudentEvaluations.Any()
+                ? $"Average for student {_selectedStudent.DisplayName} is : {_selectedStudent.Average():N2}/20"
+                : "Select a student or add an evaluation";
             }
         }
     }
@@ -96,5 +102,15 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
     {
         // This will trigger UI update for SelectedStudentEvaluations
         OnPropertyChanged(nameof(SelectedStudentEvaluations));
+    }
+
+    public string SelectedStudentAverage
+    {
+        get => _selectedStudentAverage;
+        set
+        {
+            _selectedStudentAverage = value;
+            OnPropertyChanged(nameof(SelectedStudentAverage));
+        }
     }
 }
