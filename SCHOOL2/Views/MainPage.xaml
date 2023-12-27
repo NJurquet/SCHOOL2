@@ -21,7 +21,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,*,*">
-                                <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" TextColor="LawnGreen"
+                                <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" TextColor="ForestGreen"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Medium" TextColor="Orange"   
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
