@@ -30,4 +30,42 @@ The sequence diagram illustrates the flow of interactions between various compon
 [Sequence Diagram]
 
 ### SOLID Principles
-The project adheres to the following SOLID principles :
+The project adheres to the following *SOLID* principles :
+
+- **Single Responsibility Principle (SRP)**
+  
+The Single Responsibility Principle states that a class should have only one reason to change, meaning it should have only one responsibility.
+
+**Example** : The Evaluation class in the model `Evaluation.cs` focuses solely on managing evaluations, including loading, saving, and manipulating evaluation data. It does not deal with other aspects of the system, such as managing teachers or activities.
+
+```cs
+public class Evaluation
+{
+    ...
+    public static Evaluation Load(string filename) { ... }
+    ...
+}
+```
+
+- **Open/Closed Principle (OCP)**
+
+This principle states that software should be open for extension but closed for modification. This means that it should be possible to add new features without changing existing code.
+
+**Example** : The Person class in the model `Person.cs` is extended by Student and Teacher (in `Students.cs` and `Teachers.cs`). This shows that Person is open to extension (through inheritance) but closed to modification since changes in the subclasses do not affect the Person class.
+
+```cs
+public class Person
+{
+    ...
+}
+
+public class Student : Person
+{
+    ...
+}
+
+public class Teacher : Person
+{
+    ...
+}
+```
