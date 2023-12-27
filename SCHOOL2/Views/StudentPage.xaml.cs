@@ -42,6 +42,8 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
 
         entryFirstName.Text = string.Empty;
         entryLastName.Text = string.Empty;
+
+        DataChangedNotifier.NotifyDataChanged();
     }
 
     public Student SelectedEvaluationStudent
@@ -83,6 +85,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         }
         newEvaluation.Save();
         Evaluation.LoadAll();
+
         SelectedEvaluationStudent.LoadAllEvaluations();
 
         entryGrade.Text = string.Empty;
