@@ -1,8 +1,7 @@
-namespace SCHOOL2.Views;
 using SCHOOL2.Models;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
+namespace SCHOOL2.Views;
 public partial class ActivityPage : ContentPage, INotifyPropertyChanged
 {
     private Teacher _selectedTeacher;
@@ -15,6 +14,14 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
 		InitializeComponent();
         Activity.LoadAll();
         BindingContext = this;
+        DataChangedNotifier.OnDataChanged += LoadData;
+    }
+    private void LoadData()
+    {
+        Teacher.LoadAll();
+        Activity.LoadAll();
+        OnPropertyChanged(nameof(AllActivities));
+        OnPropertyChanged(nameof(AllTeachers));
     }
     public Teacher SelectedTeacher
     {
@@ -64,7 +71,12 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
         var newActivity = new Activity(name, ECTSint, teacherFileName);
         newActivity.Save();
 
+        entryName.Text = string.Empty;
+        entryECTS.Text = string.Empty;
+
         Activity.LoadAll();
         OnPropertyChanged(nameof(AllActivities));
+
+        DataChangedNotifier.NotifyDataChanged();
     }
 }

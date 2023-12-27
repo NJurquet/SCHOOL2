@@ -1,7 +1,5 @@
 using SCHOOL2.Models;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace SCHOOL2.Views;
 
@@ -15,8 +13,14 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         Teacher.LoadAll();
         BindingContext = this;
+        DataChangedNotifier.OnDataChanged += LoadData;
     }
 
+    private void LoadData()
+    {
+        Teacher.LoadAll();
+        OnPropertyChanged(nameof(AllTeachers));
+    }
 
     public Teacher SelectedTeacher
     {
@@ -48,7 +52,13 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
         var newTeacher = new Teacher(firstName, lastName, salary);
         newTeacher.Save();
 
+        entryFirstName.Text = string.Empty;
+        entryLastName.Text = string.Empty;
+        entrySalary.Text = string.Empty;
+
         Teacher.LoadAll();
         OnPropertyChanged(nameof(AllTeachers));
+
+        DataChangedNotifier.NotifyDataChanged();
     }
 }
