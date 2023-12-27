@@ -1,5 +1,6 @@
-﻿namespace SCHOOL2;
+﻿using SCHOOL2.Utils;
 
+namespace SCHOOL2;
 public partial class App : Application
 {
 	public App()

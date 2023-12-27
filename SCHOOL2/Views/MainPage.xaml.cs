@@ -1,6 +1,6 @@
 ﻿using SCHOOL2.Models;
 using System.ComponentModel;
-using SCHOOL2;
+using SCHOOL2.Utils;
 
 namespace SCHOOL2.Views;
 public partial class MainPage : ContentPage, INotifyPropertyChanged

@@ -1,19 +1,17 @@
 ﻿using SCHOOL2.Models;
 using System.ComponentModel;
+using SCHOOL2.Utils;
 
 namespace SCHOOL2.Views;
-
 public partial class StudentPage : ContentPage, INotifyPropertyChanged
 {
+    public List<Evaluation> SelectedStudentEvaluations => SelectedStudent?.StudentEvaluations;
     public List<Student> AllStudents => Student.AllStudents;
     public List<Activity> AllActivities => Activity.AllActivities;
     private Student _selectedEvaluationStudent;
     private Activity _selectedEvaluationActivity;
-
     private Student _selectedStudent;
     private string _selectedStudentAverage;
-
-    public List<Evaluation> SelectedStudentEvaluations => SelectedStudent?.StudentEvaluations;
 
     public StudentPage()
     {
@@ -33,15 +31,15 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
 
     private void OnAddStudentClicked(object sender, EventArgs e)
     {
-        // Get student form data
         string firstName = entryFirstName.Text;
         string lastName = entryLastName.Text;
 
         var newStudent = new Student(firstName, lastName);
         newStudent.Save();
-        Student.LoadAll();
 
+        Student.LoadAll();
         OnPropertyChanged(nameof(AllStudents));
+
         entryFirstName.Text = string.Empty;
         entryLastName.Text = string.Empty;
     }
@@ -86,7 +84,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         newEvaluation.Save();
         Evaluation.LoadAll();
         SelectedEvaluationStudent.LoadAllEvaluations();
-        
 
         entryGrade.Text = string.Empty;
     }
@@ -111,7 +108,6 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
 
     private void OnStudentSelected(object sender, EventArgs e)
     {
-        // This will trigger UI update for SelectedStudentEvaluations
         OnPropertyChanged(nameof(SelectedStudentEvaluations));
     }
 

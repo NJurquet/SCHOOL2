@@ -1,17 +1,16 @@
-﻿
-using System.Globalization;
+﻿using SCHOOL2.Utils;
 
 namespace SCHOOL2.Models
 {
     public class Activity
     {
         public static List<Activity> AllActivities = new List<Activity>();
-        public List<Evaluation> ActivityEvaluations { get; set; }
-        public string Name { get; set; }
-        public Teacher Teacher { get; set; }
-        public string Filename { get; set; }
-        public int ECTS { get; set; }
-        public string TeacherFileName { get; set;} 
+        public List<Evaluation> ActivityEvaluations { get; private set; }
+        public string Name { get; private set; }
+        public Teacher Teacher { get; private set; }
+        public string Filename { get; private set; }
+        public int ECTS { get; private set; }
+        public string TeacherFileName { get; private set;} 
 
         public Activity(string name, int ects, string teacherFileName)
         {
@@ -68,12 +67,6 @@ namespace SCHOOL2.Models
             var rootFilename = Path.Combine(Config.RootDir, Filename);
             string content = string.Format("{1}{0}{2}{0}{3}", Environment.NewLine, Name, ECTS, TeacherFileName);
             File.WriteAllText(rootFilename, content);
-        }
-
-        public static void Delete(string filename)
-        {
-            var rootFilename = Path.Combine(Config.RootDir, filename);
-            File.Delete(rootFilename);
         }
 
         public string DisplayName

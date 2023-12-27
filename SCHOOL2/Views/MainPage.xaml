@@ -10,10 +10,9 @@
             <Label Text="Activities" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold"/>
             <Grid HorizontalOptions="Center">
                 <CollectionView x:Name="activitiesCollection"
-                    ItemsSource="{Binding AllActivities}"
-                    Margin="20"
-                    WidthRequest="1000">
-                    <!-- Ajustez cette valeur selon vos besoins -->
+                                ItemsSource="{Binding AllActivities}"
+                                Margin="20"
+                                WidthRequest="1000">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                     </CollectionView.ItemsLayout>
@@ -36,10 +35,9 @@
             <Label Text="Teachers" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold"/>
             <Grid HorizontalOptions="Center">
                 <CollectionView x:Name="teachersCollection"
-                    ItemsSource="{Binding AllTeachers}"
-                    Margin="20"
-                    WidthRequest="1000">
-                    <!-- Ajustez cette valeur selon vos besoins -->
+                                ItemsSource="{Binding AllTeachers}"
+                                Margin="20"
+                                WidthRequest="1000">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                     </CollectionView.ItemsLayout>
@@ -65,10 +63,9 @@
             <Label Text="Students" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold"/>
             <Grid HorizontalOptions="Center">
                 <CollectionView x:Name="studentsCollection"
-                ItemsSource="{Binding AllStudents}"
-                Margin="20"
-                WidthRequest="700">    
-                        <!-- Ajustez cette valeur selon vos besoins -->
+                                ItemsSource="{Binding AllStudents}"
+                                Margin="20"
+                                WidthRequest="700">    
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                     </CollectionView.ItemsLayout>

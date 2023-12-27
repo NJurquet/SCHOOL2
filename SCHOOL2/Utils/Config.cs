@@ -1,4 +1,4 @@
-﻿namespace SCHOOL2;
+﻿namespace SCHOOL2.Utils;
 
 public class Config
 {

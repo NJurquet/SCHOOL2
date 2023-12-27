@@ -1,12 +1,14 @@
-﻿namespace SCHOOL2.Models
+﻿using SCHOOL2.Utils;
+
+namespace SCHOOL2.Models
 {
     public class Evaluation
     {
         public static List<Evaluation> AllEvaluations = new List<Evaluation>();
-        public Student Student { get; set; }
-        public Activity Activity { get; set; }
-        public int Grade { get; set; }
-        public string Filename { get; set; }
+        public Student Student { get; private set; }
+        public Activity Activity { get; private set; }
+        public int Grade { get; private set; }
+        public string Filename { get; private set; }
 
         public Evaluation(string studentFileName, string activityFileName, int grade)
         {
@@ -63,12 +65,6 @@
             var rootFilename = Path.Combine(Config.RootDir, Filename);
             string content = string.Format("{1}{0}{2}{0}{3}", Environment.NewLine, Student.Filename, Activity.Filename, Grade);
             File.WriteAllText(rootFilename, content);
-        }
-
-        public static void Delete(string filename)
-        {
-            var rootFilename = Path.Combine(Config.RootDir, filename);
-            File.Delete(rootFilename);
         }
 
         public string DisplayName

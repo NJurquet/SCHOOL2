@@ -1,5 +1,6 @@
 using SCHOOL2.Models;
 using System.ComponentModel;
+using SCHOOL2.Utils;
 
 namespace SCHOOL2.Views;
 public partial class ActivityPage : ContentPage, INotifyPropertyChanged
@@ -51,24 +52,18 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
 
     private void OnActivitySelected(object sender, EventArgs e)
     {
-        // This will trigger UI update for SelectedActivityEvaluations
         OnPropertyChanged(nameof(SelectedActivityEvaluations));
     }
 
     private void OnAddActivityClicked(object sender, EventArgs e)
 	{
-        // R�cup�rer les donn�es du formulaire
         string name = entryName.Text;
         string ECTS = entryECTS.Text;
         int ECTSint;
         int.TryParse(ECTS, out ECTSint);
 
-        //Récupérer le fichier du professeur sélectionné
         string teacherFileName = SelectedTeacher.Filename;
 
-        MessagingCenter.Send<ActivityPage>(this, "AddActivity");
-
-        // Ajouter l'activit� � la liste ou effectuer d'autres op�rations n�cessaires
         var newActivity = new Activity(name, ECTSint, teacherFileName);
         newActivity.Save();
 

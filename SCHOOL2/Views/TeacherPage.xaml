@@ -24,7 +24,6 @@
                     Margin="0,0,0,10"/>
 
             <Grid Padding="10" HorizontalOptions="Center">
-                <!-- Column Definitions -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <!-- Proportional space, twice as much as the second column -->
@@ -32,12 +31,9 @@
                     <!-- Proportional space -->
                 </Grid.ColumnDefinitions>
 
-                <!-- Row Definitions -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Header row -->
                     <RowDefinition Height="*"/>
-                    <!-- Content row -->
                 </Grid.RowDefinitions>
 
                 <!-- Column Headers -->

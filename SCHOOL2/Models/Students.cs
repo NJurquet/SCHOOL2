@@ -1,14 +1,13 @@
-﻿namespace SCHOOL2.Models;
+﻿using SCHOOL2.Utils;
 
+namespace SCHOOL2.Models;
 public class Student : Person
 {
     public static List<Student> AllStudents = new List<Student>();
-    public List<Evaluation> StudentEvaluations { get; set; }
+    public List<Evaluation> StudentEvaluations { get; private set; }
 
     public Student(string firstname, string lastname) : base(firstname, lastname)
     {
-        Firstname = firstname;
-        Lastname = lastname;
         Filename = $"{Path.GetRandomFileName()}.student.txt";
         StudentEvaluations = new List<Evaluation>();
     }
@@ -71,15 +70,4 @@ public class Student : Person
         string content = string.Format("{1}{0}{2}", Environment.NewLine, Firstname, Lastname);
         File.WriteAllText(rootFilename, content);
     }
-
-    public static void Delete(string filename)
-    {
-        var rootFilename = Path.Combine(Config.RootDir, filename);
-        File.Delete(rootFilename);
-    }
-
-    public override string ToString()
-    {
-        return DisplayName;
-    }   
 }

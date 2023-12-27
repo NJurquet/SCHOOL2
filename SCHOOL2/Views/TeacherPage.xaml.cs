@@ -1,8 +1,8 @@
 using SCHOOL2.Models;
 using System.ComponentModel;
+using SCHOOL2.Utils;
 
 namespace SCHOOL2.Views;
-
 public partial class TeacherPage : ContentPage, INotifyPropertyChanged
 {
     private Teacher _selectedTeacher;
@@ -31,15 +31,12 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
             {
                 _selectedTeacher = value;
                 _selectedTeacher?.LoadAllActivities();
-                //OnPropertyChanged(nameof(SelectedTeacherActivities));
-
             }
         }
     }
 
     private void OnTeacherSelected(object sender, EventArgs e)
     {
-        // This will trigger UI update for SelectedTeacherActivities
         OnPropertyChanged(nameof(SelectedTeacherActivities));
     }
 
@@ -49,16 +46,17 @@ public partial class TeacherPage : ContentPage, INotifyPropertyChanged
         string lastName = entryLastName.Text;
         double salary;
         double.TryParse(entrySalary.Text, out salary);
+
         var newTeacher = new Teacher(firstName, lastName, salary);
         newTeacher.Save();
-
-        entryFirstName.Text = string.Empty;
-        entryLastName.Text = string.Empty;
-        entrySalary.Text = string.Empty;
 
         Teacher.LoadAll();
         OnPropertyChanged(nameof(AllTeachers));
 
         DataChangedNotifier.NotifyDataChanged();
+
+        entryFirstName.Text = string.Empty;
+        entryLastName.Text = string.Empty;
+        entrySalary.Text = string.Empty;
     }
 }

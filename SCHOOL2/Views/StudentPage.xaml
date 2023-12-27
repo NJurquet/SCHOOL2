@@ -42,22 +42,15 @@
 
             <Label Text="{Binding SelectedStudentAverage}" HorizontalOptions="Center" Margin="0,10"/>
             <Grid Padding="10" HorizontalOptions="Center" Margin="0,0,0,30">
-                <!-- Column Definitions -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <!-- Size to the content of the first column -->
                     <ColumnDefinition Width="Auto"/>
-                    <!-- Size to the content of the second column -->
                     <ColumnDefinition Width="Auto"/>
-                    <!-- Size to the content of the third column -->
                 </Grid.ColumnDefinitions>
 
-                <!-- Row Definitions -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Header row, size to content -->
                     <RowDefinition Height="*"/>
-                    <!-- Content row, fills remaining space -->
                 </Grid.RowDefinitions>
 
                 <!-- Column Headers -->
@@ -73,11 +66,8 @@
                                 <Grid Padding="10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
-                                        <!-- Aligns with the header column width -->
                                         <ColumnDefinition Width="Auto"/>
-                                        <!-- Aligns with the header column width -->
                                         <ColumnDefinition Width="Auto"/>
-                                        <!-- Aligns with the header column width -->
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding Activity.DisplayName}" FontSize="Small" TextColor="CornflowerBlue" HorizontalTextAlignment="Start" MinimumWidthRequest="300"/>
                                     <Label Grid.Column="1" Text="{Binding Activity.ECTS}" FontSize="Small" TextColor="CornflowerBlue" HorizontalTextAlignment="Center" MinimumWidthRequest="80"/>
