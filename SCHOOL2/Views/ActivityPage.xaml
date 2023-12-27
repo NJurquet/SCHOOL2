@@ -17,8 +17,51 @@
 
                 <Button Text="Add Activity" Clicked="OnAddActivityClicked" BackgroundColor="DodgerBlue" Margin="0, 10, 10, 0"/>
             </StackLayout>
+            <Label Text="Activity Evaluations" FontSize="Large" HorizontalOptions="Center" Margin="0,30,0,30" />
+            <Picker Title="Select Activity"
+            ItemsSource="{Binding AllActivities}"
+            ItemDisplayBinding="{Binding DisplayActivity}"
+            SelectedItem="{Binding SelectedActivity}"
+            SelectedIndexChanged="OnActivitySelected"
+            WidthRequest="250"
+            Margin="0,0,0,10"/>
+
+            <Grid Padding="10" HorizontalOptions="Center">
+                <!-- Column Definitions -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <!-- Proportional space, twice as much as the second column -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Proportional space -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Row Definitions -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Header row -->
+                    <RowDefinition Height="*"/>
+                    <!-- Content row -->
+                </Grid.RowDefinitions>
+
+                <!-- Column Headers -->
+                <Label Grid.Column="0" Grid.Row="0" Text="Student" FontSize="Medium" TextColor="CadetBlue" HorizontalOptions="Start"/>
+                <Label Grid.Column="1" Grid.Row="0" Text="ECTS" FontSize="Medium" TextColor="CadetBlue" HorizontalOptions="End"/>
+
+                <!-- ListView for Activities -->
+                <ListView Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding SelectedActivityEvaluations}" WidthRequest="300">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10" ColumnDefinitions="2*,*">
+                                    <Label Grid.Column="0" Text="{Binding Student.DisplayName}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Column="1" Text="{Binding Grade}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </StackLayout>
     </ScrollView>
 </ContentPage>
-    
-<!--SelectedIndexChanged="OnTeacherSelected"-->
+   

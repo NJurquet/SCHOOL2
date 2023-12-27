@@ -6,11 +6,14 @@ using System.Runtime.CompilerServices;
 public partial class ActivityPage : ContentPage, INotifyPropertyChanged
 {
     private Teacher _selectedTeacher;
+    private Activity _selectedActivity;
     public List<Teacher> AllTeachers => Teacher.AllTeachers;
-
+    public List<Activity> AllActivities => Activity.AllActivities;
+    public List<Evaluation> SelectedActivityEvaluations => SelectedActivity?.ActivityEvaluations;
     public ActivityPage()
 	{
 		InitializeComponent();
+        Activity.LoadAll();
         BindingContext = this;
     }
     public Teacher SelectedTeacher
@@ -21,9 +24,27 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
             if (_selectedTeacher != value)
             {
                 _selectedTeacher = value;
-                OnPropertyChanged();
             }
         }
+    }
+
+    public Activity SelectedActivity
+    {
+        get => _selectedActivity;
+        set
+        {
+            if (_selectedActivity != value)
+            {
+                _selectedActivity = value;
+                _selectedActivity?.LoadAllEvaluations();
+            }
+        }
+    }
+
+    private void OnActivitySelected(object sender, EventArgs e)
+    {
+        // This will trigger UI update for SelectedActivityEvaluations
+        OnPropertyChanged(nameof(SelectedActivityEvaluations));
     }
 
     private void OnAddActivityClicked(object sender, EventArgs e)
@@ -42,6 +63,8 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
         // Ajouter l'activit� � la liste ou effectuer d'autres op�rations n�cessaires
         var newActivity = new Activity(name, ECTSint, teacherFileName);
         newActivity.Save();
-    }
 
+        Activity.LoadAll();
+        OnPropertyChanged(nameof(AllActivities));
+    }
 }

@@ -6,6 +6,7 @@ namespace SCHOOL2.Models
     public class Activity
     {
         public static List<Activity> AllActivities = new List<Activity>();
+        public List<Evaluation> ActivityEvaluations { get; set; }
         public string Name { get; set; }
         public Teacher Teacher { get; set; }
         public string Filename { get; set; }
@@ -16,6 +17,7 @@ namespace SCHOOL2.Models
         {
             Name = name;
             TeacherFileName = teacherFileName;
+            ActivityEvaluations = new List<Evaluation>();
             Teacher = Teacher.Load(teacherFileName);
             ECTS = ects;
             Filename = $"{Path.GetRandomFileName()}.activity.txt";
@@ -45,6 +47,22 @@ namespace SCHOOL2.Models
             }
         }
 
+        public void LoadAllEvaluations()
+        {
+            ActivityEvaluations.Clear();
+            IEnumerable<Evaluation> evaluations = Directory
+                .EnumerateFiles(Config.RootDir, "*.evaluation.txt")
+                .Select(filename => Evaluation.Load(Path.GetFileName(filename)))
+                .OrderBy(evaluation => evaluation.DisplayName);
+            foreach (var evaluation in evaluations)
+            {
+                if (evaluation.Activity.Filename == Filename)
+                {
+                    ActivityEvaluations.Add(evaluation);
+                }
+            }
+        }
+
         public void Save()
         {
             var rootFilename = Path.Combine(Config.RootDir, Filename);
@@ -63,7 +81,7 @@ namespace SCHOOL2.Models
             get{ return String.Format("{0} - {2}", Name, ECTS, Teacher.DisplayName); }
         }
 
-        public string DisplayTeacherActivity
+        public string DisplayActivity
         {
             get { return String.Format("{0} {1}", Name, ECTS); }
         }   

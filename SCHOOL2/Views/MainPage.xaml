@@ -25,7 +25,7 @@
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Medium" TextColor="CornflowerBlue"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Text="{Binding Teacher}" FontSize="Medium" TextColor="CornflowerBlue"
+                                <Label Grid.Column="2" Text="{Binding Teacher.DisplayName}" FontSize="Medium" TextColor="CornflowerBlue"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             </Grid>
                         </DataTemplate>
@@ -62,22 +62,29 @@
 
 
 
-            <Label Text="Students" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" />
-            <CollectionView x:Name="studentsCollection"
-			        ItemsSource="{Binding AllStudents}"
-			        Margin="20">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
+            <Label Text="Students" FontSize="Large" HorizontalOptions="Center" Margin="0,10,0,10" FontAttributes="Bold"/>
+            <Grid HorizontalOptions="Center">
+                <CollectionView x:Name="studentsCollection"
+                ItemsSource="{Binding AllStudents}"
+                Margin="20"
+                WidthRequest="700">    
+                        <!-- Ajustez cette valeur selon vos besoins -->
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding ToString}" FontSize="Medium" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,*">
+                                <Label Grid.Column="0" Text="{Binding Firstname}" FontSize="Medium" TextColor="CornflowerBlue"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Lastname}" FontSize="Medium" TextColor="CornflowerBlue"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </StackLayout>
     </ScrollView>
 </ContentPage>
