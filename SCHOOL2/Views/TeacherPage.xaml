@@ -50,8 +50,8 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Padding="10" ColumnDefinitions="2*,*">
-                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
-                                    <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Medium" TextColor="CornflowerBlue" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="0" Text="{Binding Name}" FontSize="Small" TextColor="CornflowerBlue" HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                    <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Small" TextColor="CornflowerBlue" HorizontalOptions="End" HorizontalTextAlignment="End"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

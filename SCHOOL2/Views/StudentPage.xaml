@@ -23,7 +23,7 @@
                         WidthRequest="250"/>
                 <Picker Title="Select activity"
                         ItemsSource="{Binding AllActivities}"
-                        ItemDisplayBinding="{Binding DisplayName}"
+                        ItemDisplayBinding="{Binding DisplayActivity}"
                         SelectedItem="{Binding SelectedEvaluationActivity}"
                         WidthRequest="250"/>
                 <Entry x:Name="entryGrade" Placeholder="Grade" />

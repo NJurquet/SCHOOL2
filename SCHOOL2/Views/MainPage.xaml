@@ -21,9 +21,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,*,*">
-                                <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" TextColor="CornflowerBlue"
+                                <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" TextColor="LawnGreen"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Medium" TextColor="CornflowerBlue"
+                                <Label Grid.Column="1" Text="{Binding ECTS}" FontSize="Medium" TextColor="Orange"   
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 <Label Grid.Column="2" Text="{Binding Teacher.DisplayName}" FontSize="Medium" TextColor="CornflowerBlue"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
@@ -51,7 +51,7 @@
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 <Label Grid.Column="1" Text="{Binding Lastname}" FontSize="Medium" TextColor="CornflowerBlue"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Text="{Binding Salary, StringFormat='{0:C}'}" FontSize="Medium" TextColor="CornflowerBlue"
+                                <Label Grid.Column="2" Text="{Binding Salary, StringFormat='{0:C}'}" FontSize="Medium" TextColor="Coral"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             </Grid>
                         </DataTemplate>
