@@ -20,6 +20,15 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         Student.LoadAll();
         BindingContext = this;
+        DataChangedNotifier.OnDataChanged += LoadData;
+    }
+
+    private void LoadData()
+    {
+        Student.LoadAll();
+        Activity.LoadAll();
+        OnPropertyChanged(nameof(AllStudents));
+        OnPropertyChanged(nameof(AllActivities));
     }
     private void OnAddStudentClicked(object sender, EventArgs e)
     {
@@ -76,6 +85,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         newEvaluation.Save();
         Evaluation.LoadAll();
         SelectedEvaluationStudent.LoadAllEvaluations();
+        
 
         entryGrade.Text = string.Empty;
     }

@@ -22,6 +22,7 @@ public partial class ActivityPage : ContentPage, INotifyPropertyChanged
         Activity.LoadAll();
         OnPropertyChanged(nameof(AllActivities));
         OnPropertyChanged(nameof(AllTeachers));
+        OnPropertyChanged(nameof(SelectedActivityEvaluations));
     }
     public Teacher SelectedTeacher
     {
