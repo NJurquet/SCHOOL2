@@ -30,6 +30,7 @@ public partial class StudentPage : ContentPage, INotifyPropertyChanged
         OnPropertyChanged(nameof(AllStudents));
         OnPropertyChanged(nameof(AllActivities));
     }
+
     private void OnAddStudentClicked(object sender, EventArgs e)
     {
         // Get student form data
