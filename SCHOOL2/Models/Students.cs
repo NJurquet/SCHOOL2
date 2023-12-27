@@ -53,6 +53,18 @@ public class Student : Person
         }
     }
 
+    public double Average()
+    {
+        int total = 0;
+        int ects = 0;
+        foreach (var evaluation in StudentEvaluations)
+        {
+            total += evaluation.Grade * evaluation.Activity.ECTS;
+            ects += evaluation.Activity.ECTS;
+        }
+        return ects != 0 ? (double)total / ects : 0.0;
+    }
+
     public void Save()
     {
         var rootFilename = Path.Combine(Config.RootDir, Filename);
