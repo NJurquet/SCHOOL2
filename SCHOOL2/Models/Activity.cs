@@ -69,11 +69,6 @@ namespace SCHOOL2.Models
             File.WriteAllText(rootFilename, content);
         }
 
-        public string DisplayName
-        {
-            get{ return String.Format("{0} - {2}", Name, ECTS, Teacher.DisplayName); }
-        }
-
         public string DisplayActivity
         {
             get { return String.Format("{0} [{1}]", Name, ECTS); }
