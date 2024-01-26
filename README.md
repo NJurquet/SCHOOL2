@@ -21,13 +21,13 @@ git clone https://github.com/NJurquet/SCHOOL2.git
 
 In the class diagram, you can see the relationships and interactions between different classes in the project.
 
-[Class Diagram]
+![Class Diagram](SCHOOL2/Resources/Images/School_Class_Diagram.jpg)
 
 ### Sequence Diagram
 
 The sequence diagram illustrates the flow of interactions between various components or objects during a particular operation or scenario in the project.
 
-[Sequence Diagram]
+![Sequence Diagram](SCHOOL2/Resources/Images/School_Sequence_Diagram.jpg)
 
 ### SOLID Principles
 The project adheres to the following *SOLID* principles :
