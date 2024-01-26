@@ -3,7 +3,8 @@
 ## Introduction
 Welcome to School !
 
-This project is designed to manage a school system. It can create teachers, students, activities, and evaluations, but also displays students' reports. The app is built using the **MAUI .NET 8** framework composed of **C#** and **XAML** languages.
+This project is designed to manage a school system. It can create teachers, students, activities, and evaluations, but it also displays students' reports. The app is built using the **MAUI .NET 8** framework composed of **C#** and **XAML** languages.
+The application also implements the additional functionality of displaying all Activities, Teachers, and Students; Activities Evaluations, Teacher Activities, and Student reports.
 
 ## Installation
 
